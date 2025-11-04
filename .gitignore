@@ -1,0 +1,34 @@
+# LaTeX intermediate files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.gz
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+
+
+
+# Backup files
+*~
+*.bak
+*.backup
+*.swp
+
+# VSCode settings folder
+.vscode/
+
+# Mac OS files
+.DS_Store
+

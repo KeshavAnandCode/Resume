@@ -223,7 +223,7 @@
          \newcommand{\mytext}{Firstly, I find Computer Science deeply intriguing as it is the perfect crossover between my two passions of
             mathematics and problem-solving. The ability to optimize a computer chip to solve a pratical problem has 
             always fascinated me, and the rising popularity of Machine Learning and Artificial Intelligence further
-            piqued my interest during the COVID-19 pandemic. My research project from 2024 - 2025 started my journey
+            piqued my interest during the COVID-19 pandemic. My research project from 2024 - 2025, GaitGuardian, started my journey
             with signal processing, as I had worked on a project to predict Freezing of Gait (FoG) episodes in Parkinson's
             Disease patients using a belt-mounted IMU sensor and machine learning algorithms. In addition to building
             an end-to-end hardware embedding with a custom PCB, I also developed a strong understanding of signal processing
@@ -232,7 +232,15 @@
             cleaned time-series data into a 1D CNN, acting as an automatic feature extractor (with no flattening). 
             This was passed into a hybrid biLISTM with temporal and spatial attention mechanisms,
             allowing for segmented windows to be read both forwards and backwards, and a final dense layer would
-            output the boolean state of whether a FoG episode was occuring.}
+            output the boolean state of whether a FoG episode was occuring in real time. The learning I gained from this research led 
+            me to pursue other related signal processing tasks to boost the final product for Parkinson's patients. 
+            Researching other Parkinsonian symptoms led me to explore tremor detection (uncontroleld shaking of the hands), 
+            and I implemented a real-time tremor detection model that involved a bandpass butterworth filter to isolate tremor frequencies
+            between 4-6 Hz, followed by an FFT to extract frequency-domain features. These features were then fed into a lightweight
+            1D CNN, resulting in state-of-the-art 99\% accuracy while limiting false positives. I also looked into signal processing 
+            within my FTC robotics team, realizing that IMU data could be used to improve odometry and localization. I implemented a 
+            custom Kalman filter to fuse IMU data with wheel encoder reading, significantly reducing drift during autonomous navigation 
+            and reducing error buildup over time. }
 
 
 

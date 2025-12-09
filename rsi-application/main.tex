@@ -34,6 +34,8 @@
 \usepackage{ifthen} % for conditional statements
 \usepackage{needspace} % for avoiding page brake right after the section title
 \usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+\usepackage{xstring}
+
 
 % Ensure that generate pdf is machine readable/ATS parsable:
 \ifPDFTeX
@@ -187,218 +189,68 @@
     \vspace{0.2 cm}
 
 
-    \section{Program Information}
+    \section{1. Why did you choose these research fields?}
 
+        \vspace{0.2 cm}
 
 
         
         \begin{onecolentry}
-            Application for Research and Science Institute (RSI), and ultra-selective (3\%) program at MiT for science research
+            \textbf{Prompt: }Articulate why the research fields chosen on the previous page are intriguing and exciting to you. For each sub-field, state what you perceive as the one or two most interesting questions or problems in this area.  Explain why these sorts of questions interest you. Your responses are shared with mentors. Please respond with clarity and specificity, including what specific prior research/coursework/etc experiences have prepared you to ``hit the ground running'' in these fields at RSI.
+
         \end{onecolentry}
 
         \vspace{0.2 cm}
-
-        \begin{onecolentry}
-            Admission into this program results in auto-admission into \textbf{practically any US College} (due to selectivity)
-        \end{onecolentry}
-
-        \vspace{0.2 cm}
-
-        \begin{onecolentry}
-            I am applying for RSI so I can promote my \textbf{computer science and engineering} research that I have done
-        
-        \end{onecolentry}
-
-        \vspace{0.15 cm}
-
-
 
         \begin{onecolentry}
             \begin{highlights}
-                \item \href{https://math.mit.edu/research/highschool/rsi/}{RSI Program Page} — top program in the US for high school research
-                \item I am applying in computer science and robotics as research disciplines
-                \item My acceptance is dependent on my prior research, accolades, and the strength of my recommendations
+                \item Field 1: Computer Science — Machine Learning for Signal Processing
+                \item Field 2: Robotics/Mechatronics — Autonomous Motion Planning
             \end{highlights}
         \end{onecolentry}
 
-    
-    \section{Character Traits and Personality}
-
-    \begin{onecolentry}
-        \begin{highlightsforbulletentries}
+        \vspace{0.2 cm}
 
 
-        \item \textbf{Honest} and high \textbf{integrity}: helped catch cheaters in school multiple times.
-        \item \textbf{Inquisitive and Curious}: always asking questions and trying to learn more
-        \item \textbf{Hardworking and Determined}: Pushing myself to perfection in everything I do
-        \item \textbf{Creative Problem Solver}: Able to think outside the box and come up with innovative solutions
-        \item \textbf{Character Weaknesses:}
-            \subitem Can tend to overthink problems and overcomplicated solutions
-            \subitem Sometimes take on too much at once and struggle to prioritize tasks
-            \subitem Sometimes struggle with delegation and asking for help when needed
-            \subitem Can be overly critical of myself and others at times
-        \end{highlightsforbulletentries}
-    \end{onecolentry}
-
-    \section{Education}
-
-
-        \begin{twocolentry}{
-            
-            
-        \textit{August 2023 – May 2027}}
-            \textbf{Plano East Senior High School, Plano}
-
-            \textit{STEM and Multidisciplinary Endorsement}
-        \end{twocolentry}
-
-        \vspace{0.10 cm}
         \begin{onecolentry}
-            \begin{highlights}
-                \item GPA: 4.73/4.0 (\href{https://resume.keshavanand.net/transcript}{View Unnoficial Transcript})
-                \item Class Rank: \textbf{1/1273}
-                \item \textbf{Current Coursework:} AP Chemistry, American Studies (AP US History + AP English Language), Digital Electronics, AP Physics I, Calculus III (via Collin College)
-                \item SAT: 1550/1600 — Reading 760/800, Maths 790/800
-            \end{highlights}
+            \textbf{Limit: 5000 Characters}
+
         \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+         \newcommand{\mytext}{Firstly, I find Computer Science deeply intriguing as it is the perfect crossover between my two passions of
+            mathematics and problem-solving. The ability to optimize a computer chip to solve a pratical problem has 
+            always fascinated me, and the rising popularity of Machine Learning and Artificial Intelligence further
+            piqued my interest during the COVID-19 pandemic. My research project from 2024 - 2025 started my journey
+            with signal processing, as I had worked on a project to predict Freezing of Gait (FoG) episodes in Parkinson's
+            Disease patients using a belt-mounted IMU sensor and machine learning algorithms. In addition to building
+            an end-to-end hardware embedding with a custom PCB, I also developed a strong understanding of signal processing
+            techniques. My novel pipeline involved using fourier transforms, z-score normalization, and wavelet denoising
+            to filter out noise from the raw IMU data. Unlike existing approachs that used time-domain features, I fed the
+            cleaned time-series data into a 1D CNN, acting as an automatic feature extractor (with no flattening). 
+            This was passed into a hybrid biLISTM with temporal and spatial attention mechanisms,
+            allowing for segmented windows to be read both forwards and backwards, and a final dense layer would
+            output the boolean state of whether a FoG episode was occuring.}
+
+
+
+        \begin{onecolentry}
+
+
+        \StrLen{\mytext}[\n]
+        \mytext{ }(\n)
+
+        \end{onecolentry}
+
 
 
 
 
 
     
-    \section{GaitGuardian: Highlight Research Project}
-
-
-
-\begin{twocolentry}{
-\textit{\href{https://isef.net/project/robo011t-ml-imu-processing-and-visual-monitoring-for-pd}{Project Portfolio}}}
-    \textbf{Lead Researcher}
-\end{twocolentry}
-
-\vspace{0.10 cm}
-\begin{onecolentry}
-    \begin{highlights}
-        \item Built \textbf{GaitGuardian}, an end-to-end ML system aiding advanced Parkinson’s Disease patients.
-        \item Designed a \textbf{custom PCB} and embedded stack with a 6-DoF IMU and ESP32-S3 for real-time sensing.
-        \item Developed a \textbf{dual-attention CNN + biLSTM} model predicting Freezing-of-Gait up to 2s early.
-        \item Created real-time algorithms for \textbf{fall detection} and \textbf{tremor classification} using IMU signals.
-        \item Implemented a cloud-based \textbf{visual navigation module} with transformer object detection, depth estimation, and multimodal LLM scene descriptions.
-        \item Optimized sensor pipelines via \textbf{signal filtering, feature engineering, oversampling}, and model tuning.
-        \item Built two wearable devices (trunk and wrist) plus a BLE-connected \textbf{forehead camera} for vision tasks.
-        \item Demonstrated performance exceeding existing FoG, fall, and tremor detection systems.
-    \end{highlights}
-\end{onecolentry}
-
-\vspace{0.1cm}
-
-\begin{onecolentry}
-    Won 3rd Place at \textbf{The International Science and Engineering Fair}, 2nd OVERALL in Dallas $\to$ over \$1500 won
-\end{onecolentry}
-
-                        
-\section{Simply Stir: Highlight Research Project}
-
-
-\begin{twocolentry}{
-\textit{\href{https://isef.net/project/etsd012-self-stirring-pot-using-the-seebeck-effect}{Project Portfolio}}}
-    \textbf{Sole Researcher}
-\end{twocolentry}
-
-\vspace{0.10 cm}
-\begin{onecolentry}
-    \begin{highlights}
-        \item Developed a thermoelectric energy-harvesting system using a TEG for autonomous stirring.
-        \item Designed a compact aluminum enclosure enabling efficient heat transfer and stable thermal gradients.
-        \item Implemented electrical conditioning and load-matching to maximize TEG power extraction.
-        \item Tested power delivery across various $R_Loads$ using Vernier Probes
-        \item Performed thermal, electrical, and mechanical characterization across multiple cooking conditions.
-        \item Conducted viscosity-based stirring tests and identified mechanical design improvements for high-torque fluids.
-    \end{highlights}
-\end{onecolentry}
-\vspace{0.1cm}
-
-\begin{onecolentry}
-    Qualified to \textbf{The International Science and Engineering Fair}, 1st in Engineering @ Dallas
-\end{onecolentry}
-    
-                        
-\section{FTC Robotics}
-
-\begin{twocolentry}{
-\textit{\href{https://technicalturbulence.org}{Website}, \href{https://github.com/KeshavAnandCode/2024_Main.git}{Code Repo}}}
-    \textbf{Lead Software Developer – Technical Turbulence} (2023–Present)
-\end{twocolentry}
-
-\vspace{0.10 cm}
-\begin{onecolentry}
-    \begin{highlights}
-        \item Designed and implemented \textbf{custom inverse kinematics and path-planning algorithms} for precise autonomous navigation.
-        \item Integrated \textbf{computer vision pipelines} for object classification using TensorFlow Lite
-        \item Developed novel driver control enhancements to improve driver performance
-        \item Optimized accuracy and real-time performance through efficient sensor usage
-        \item Lead software \textbf{Top 30 Worldwide} for autonomous programming; reached FTC State Finals.
-        \item Led software development, version control, and testing for a programming team of 4 members.
-    \end{highlights}
-\end{onecolentry}
-    
-    \section{Skills}
-
-
-
-        
-        \begin{onecolentry}
-            \textbf{Programming Languages:} Java, Python, Bash, C++ (Arduino), Kotlin (FTC), Limited HTML, JS, CSS
-        \end{onecolentry}
-
-        \vspace{0.2 cm}
-
-        \begin{onecolentry}
-            \textbf{Programming Applications:} Machine Learning, Signal Processing, Tensor Flow, Computer Vision
-        \end{onecolentry}
-
-        \vspace{0.2 cm}
-
-        \begin{onecolentry}
-            \textbf{Miscellaneous:} Public Speaking, CAD, PCB Design, Electrical, Competition Math
-        \end{onecolentry}
-
-        
-
-    \section{Other Activities}
-
-
-    \begin{onecolentry}
-            \textbf{Vice President, LASER:} Guiding and instructing 120+ students for Science Fair
-        \end{onecolentry}
-
-        \vspace{0.2 cm}
-
-        \begin{onecolentry}
-            \textbf{Founder, Cricket Club:} Former USA U15 Cricketer $\to$ Formed Plano East's first cricket team
-        \end{onecolentry}
-
-        \vspace{0.2 cm}
-
-        \begin{onecolentry}
-            \textbf{Technology Officer, NHS:} Coded and maintained React-based portal for largest NHS chapter in the US
-        \end{onecolentry}
-
-        \vspace{0.2 cm}
-
-
-
-
-        \begin{twocolentry}{
-            
-            
-        \textit{\href{https://musicportfolio.keshavanand.net/}{Original Music Library}}}
-        \textbf{Indian Film Music:} Bass, Keys, and Arrangement, member of High Octavez 
-            
-        \end{twocolentry}
-
-        \vspace{0.2 cm}
-
+  
 
  
     

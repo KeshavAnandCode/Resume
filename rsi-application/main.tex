@@ -220,21 +220,31 @@
 
         \vspace{0.2 cm}
 
-         \newcommand{\mytext}{Firstly, I find Computer Science deeply intriguing as it is the perfect crossover between my two passions of
-            mathematics and problem-solving. The ability to optimize a computer chip to solve a pratical problem has 
-            always fascinated me, and the rising popularity of Machine Learning and Artificial Intelligence further
-            piqued my interest during the COVID-19 pandemic. My research project from 2024 - 2025, GaitGuardian, started my journey
-            with signal processing, as I had worked on a project to predict Freezing of Gait (FoG) episodes in Parkinson's
-            Disease patients using a belt-mounted IMU sensor and machine learning algorithms. In addition to building
-            an end-to-end hardware embedding with a custom PCB, I also developed a strong understanding of signal processing
-            techniques. My novel pipeline involved using fourier transforms, z-score normalization, and wavelet denoising
+         \newcommand{\mytext}{During the antisocial years of the COVID-19 pandemic, my endless YouTube bingeing
+            led me into
+            accidentally discovering how computers work at a low level. The moment I learned the fascinating 
+            marvel of engineering that is a computer, I immediately fell in love with Computer Science.
+            Over the years, I have also developed a specialized interest in signal processing and its applications.
+            My curiousity in this topic stems from my first Math Club meeting in 9th grade, where a senior officer
+            had explained the fascinating science of how radio signals are transmitted and received using Fourier transforms
+            (as an application of calulus).
+            These concepts overlapped with my learning of fascinating Calculus concepts, and I was amazed at how signals can 
+            be analyzed and processed. Today, the major question that excites me within the field of Signal Processing is how to effectively
+            adapt digital signal processing and machine learning for real-time resource-constrained embedded systems. 
+            As a hardcore robotics enthusiast, I have always been not just interested in the theoretical software,
+            but also the practical hardware embedding of these algorithms. This really sparked my interest in the field 
+            of signal processing for embedded systems, prompting me to start a 2 year research project that would become the 
+            focus of my life. 
+            My ISEF-winning research project from 2024 - 2025, GaitGuardian, was my first major experience with signal processing, 
+            as I had worked on a project to predict Freezing of Gait (FoG) episodes in Parkinson's
+            Disease patients using a belt-mounted IMU sensor and machine learning algorithms. My novel pipeline involved using fourier transforms, z-score normalization, and wavelet denoising
             to filter out noise from the raw IMU data. Unlike existing approachs that used time-domain features, I fed the
             cleaned time-series data into a 1D CNN, acting as an automatic feature extractor (with no flattening). 
             This was passed into a hybrid biLISTM with temporal and spatial attention mechanisms,
             allowing for segmented windows to be read both forwards and backwards, and a final dense layer would
             output the boolean state of whether a FoG episode was occuring in real time. The learning I gained from this research led 
             me to pursue other related signal processing tasks to boost the final product for Parkinson's patients. 
-            Researching other Parkinsonian symptoms led me to explore tremor detection (uncontroleld shaking of the hands), 
+            Researching other Parkinsonian symptoms led me to explore tremor detection (uncontrolled shaking of the hands), 
             and I implemented a real-time tremor detection model that involved a bandpass butterworth filter to isolate tremor frequencies
             between 4-6 Hz, followed by an FFT to extract frequency-domain features. These features were then fed into a lightweight
             1D CNN, resulting in state-of-the-art 99\% accuracy while limiting false positives. I also looked into signal processing 

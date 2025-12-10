@@ -58,7 +58,7 @@
 \makeatletter
 \let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
 \patchcmd{\ps@customFooterStyle}{\thepage}{
-    \color{gray}\textit{\small Keshav Anand - Page \thepage{} of \pageref*{LastPage}}
+    \color{gray}\textit{\small Keshav Anand - Page \thepage}
 }{}{} % replace number by desired string
 \makeatother
 \pagestyle{customFooterStyle}
@@ -277,11 +277,8 @@
 
 
         \begin{onecolentry}
-
-
         \StrLen{\promptA}[\n]
         \promptA{ }(\n)
-
         \end{onecolentry}
 
 
@@ -296,10 +293,34 @@
         \end{onecolentry}
 
 
-        \vspace{0.2 cm}
+        \vspace{0.3 cm}
 
-         \newcommand{\promptB}{Every word amazed me. ChatGPT did not feel like yet another}
-
+         \newcommand{\promptB}{Every word amazed me. ChatGPT did not feel like yet another website so much 
+         as a magical portal to infinite knowledge. I still remember the thrill when my computer science teacher 
+         unveiled the mystical tool that could ace our rock-paper-scissors coding exam in under a minute. Little did I
+         realize that in less than three years, AI would touch everything I do —
+         from school projects to software debugging, even revising this very essay. But it was in the Summer of 2023 that 
+         my best friend asked me a life-changing question: ``How does it work?'' I was completely clueless, and I told him 
+         that a stenographer was typing at the other end. As months passed and my AI usage expontially increased, 
+         this question haunted me. I was determined not to be a mere user, but to understand and develop the magic 
+         behind the curtains. 
+         \\\\
+         That Summer was when I embarked on my first long-term goal: to fully understand the 
+         inner workings of the devices and programs I use. My journey in achieving this started when I joined my 
+         robotics team, Technical Turbulence. As the sole software member, I learned everything from scratch. 
+         I started by dissecting each wire, realizing that understanding hardware was crucial to mastering software. 
+        From PWM control to I2C communication, I slowly worked up the layers of abstraction, eventually
+        coming to the software that I was responsible to write. Today, I continue my pursuit of deep technical knowledge 
+        through my independent research projects. In my ninth grade, I decided to grasp the fascinating concept of a 
+        thermoelectric generator. My research eventually culminated in a novel prototype that utilized the fascinating 
+        Seebeck effect to automatically stir a cooking pot. The following year, I dove into high-level signal processing
+        and machine learning concepts to develop GaitGuardian, my ISEF-winning Parkinson's research project. 
+        Through these experiences, I have learned that true mastery comes from understanding the layers beneath the surface,
+        which is why I am committed to this lifelong goal of deep technical knowledge. As I continue to uncover more 
+        information, I continue pursuing this goal through passion projects. My latest endeavor of hosting a full 
+        server on an old chromebook is pushing me to learn Linux system administration, networking, and cybersecurity. The final 
+        website code is the same, but the knowledge I gain from understanding the server-side is invaluable. It is with this goal 
+        in mind that I approach RSI, eager to learn from experts and deepen my understanding of computer science.}
 
 
 

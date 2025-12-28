@@ -1,0 +1,494 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Keshav Anand's Full Portfolio},
+    pdfauthor={Keshav Anand},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Keshav Anand - Page \thepage{} of \pageref*{LastPage}}
+}{}{} % replace number by desired string
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in December 2025}\hspace{\widthof{Last updated in December 2025}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    \placelastupdatedtext
+    \begin{header}
+        \textbf{\fontsize{24 pt}{24 pt}\selectfont Keshav Anand — Full Portfolio}
+
+    %     \vspace{0.3 cm}
+
+    %     \normalsize
+    %     \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}Your Location}%
+    %     \kern 0.25 cm%
+    %     \AND%
+    %     \kern 0.25 cm%
+    %     \mbox{\hrefWithoutArrow{mailto:youremail@yourdomain.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}youremail@yourdomain.com}}%
+    %     \kern 0.25 cm%
+    %     \AND%
+    %     \kern 0.25 cm%
+    %     \mbox{\hrefWithoutArrow{tel:+90-541-999-99-99}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}0541 999 99 99}}%
+    %     \kern 0.25 cm%
+    %     \AND%
+    %     \kern 0.25 cm%
+    %     \mbox{\hrefWithoutArrow{https://yourwebsite.com/}{\color{black}{\footnotesize\faLink}\hspace*{0.13cm}yourwebsite.com}}%
+    %     \kern 0.25 cm%
+    %     \AND%
+    %     \kern 0.25 cm%
+    %     \mbox{\hrefWithoutArrow{https://linkedin.com/in/yourusername}{\color{black}{\footnotesize\faLinkedinIn}\hspace*{0.13cm}yourusername}}%
+    %     \kern 0.25 cm%
+    %     \AND%
+    %     \kern 0.25 cm%
+    %     \mbox{\hrefWithoutArrow{https://github.com/yourusername}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}yourusername}}%
+
+    \end{header}
+
+    \vspace{0.2 cm}
+
+
+    \section{7th Grade}
+
+        \begin{twocolentry}{
+            
+            
+        \textit{August 2021 – May 2022}}
+            \textbf{Schimelpfenig Middle School, Plano}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Algebra I Honors (MR): [99, 99]
+                \item Band: Solo Contest Distinguished in City as Flute Player
+                \item American Football B-Team (4th String) Quarterback and Safety (10+ hrs/week)
+                \item School Cross Country Team Member (10+ hrs/week)
+                \item Robotics — Joined school robotics club as programmer
+                \subitem Only programmer after COVID, build code from scratch
+                \subitem Won first place in local qualifier and semi qualifier  (no regional advancement)
+                \item MATHCOUNTS and AMC math competitions — no awards
+                \item Whiz Quiz (Trivia) Team Captain — 3rd Place in City
+                \item Science Fair Honorable Mention at District Level
+                \subitem Using Valakku Tiri (Cotton Wick) for Self Watered Plant (Capillary Action) 
+                \item Speech and Debate Local Tournaments — 5th in Musical Pantomime (Acting), Public Forum Debate 5th
+
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.1 cm}
+
+        \textbf{Extracurriculars and Hobbies:}
+
+
+        \begin{highlights}
+            \item Carnatic Vocal Music — Performed in One Major Concert; Started Self-Taught Carnatic Keyboard
+            \item Cricket — 20 Hours a Week, Competed in Local and National Tournaments; U13
+            \item Chess classes with VAV Rajesh IM, no tournaments (ELO 1100)
+            \item Dropped Western Piano — learned for 7 years
+            \item Baseball starting pitcher for club team 
+            \item Started self taught bass guitar on \$80 bass guitar — no shows or awards
+            \item Self taught Carnatic Keyboard — Using portamento and mono legato for gamakams
+            \item Competitive Math Classes
+            \item Started baking eggless cakes as a hobby with family — no sales or awards
+            \item Started passion for hiking in national and state parks 
+            \subitem Caprock Canyons, Palo Duro Canyon, Big Bend National Park
+            \item Started arranging music 
+            \subitem Created arrangements for Garage Arts Project (Vasupradha Raghav), mixing Carnatic and Western notes
+            \subitem Recreated popular Tamil songs as Kareoke / Cover tracks (Konjum Mainakkale, Thoda Thoda, Endhan Nenjil, etc.)
+
+        \end{highlights}
+
+    \section{8th Grade}
+
+        \begin{twocolentry}{
+            
+            
+        \textit{August 2022 – May 2023}}
+            \textbf{Schimelpfenig Middle School, Plano}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Geometry Honors (MR): [98, 100]
+                \item Band: Band Flute Lead, UIL All Region 14th Chair Flute, Solo Contest Distinguished in City, Played in Numerous Band Solos
+                \item American Football B-Team (3rd String) Quarterback and DB (15+ hrs/week)
+                \item School Cross Country Team Member (10+ hrs/week)
+                \item Robotics — 2nd Year FTC School Team
+                \subitem Coded basic driver controlled system, vision processing for autonomous
+                \subitem Won first place as alliance captain in local qualifier, ahead of all other area middle school teams
+                \item Competition Math — Represented school in MATHCOUNTS State, ranking in top 60 of Texas (2nd in Reigon)
+                \item Whiz Quiz (Trivia) Team Captain — First Place in City, District Recognition
+                \item Science Fair First at School Level (Did not participate further)
+                \subitem Using a non-Newtonian fluid (Oobleck) to create a shock absorbing material for knee pads 
+                \subitem Tested with egg drop tests
+                \item Speech and Debate Local Tournaments (No Award)
+
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.1 cm}
+
+        \textbf{Extracurriculars and Hobbies:}
+
+
+        \begin{highlights}
+            \item Carnatic Vocal Music — Performed in One Major Concert
+            \item Carnatic Keyboard — Played for major Bharatanatyam dance performance
+            \item Cricket — 20 Hours a Week, Top Leg SPinner in Dallas — Represented City in Southwest U15 Zonals
+            \item Started chess tournaments, dropped coaching (ELO 1250 USCF)    
+            \item Started producing true arrangement covers, getting input from Music Director Girishh Gopalakrishnan
+            \subitem Started solo unplucked arrangements, using MIDI for all tracks
+            \item Dropped Baseball to focus on Cricket
+            \item Continued bass guitar self taught (on and off)
+            \item Joined High Octavez Band as a Keyboardist
+            \subitem Performed in 2 major concerts, one in Fall and one in Spring
+            \subitem Over 250 hours put in learning sound reproduction for live playing
+            \subitem Ticketed concerts with over 1000 attendees, profits go to charity
+            \subitem Won presidential award silver for community service through band
+            \item Continued hiking during holidays
+            \item Got a perfect score (101/100) in Texas Music Teacher's Associated Music Theory Test
+            \item Started learning carnatic mridangam from Vid. Raju Balan
+            \subitem Learned basic sollukai patterns and konnakol
+
+        \end{highlights}
+
+        \vspace{0.1 cm}
+
+        \textbf{Summer:}
+         \begin{highlights}
+            \item Represented Dallas nationally in U15, U13 cricket tournaments
+            \subitem Won best bowler in U13 Independence Day tournament
+            \item Performed in Carnatic Vocal Concert, and small carnatic keyboard accompaniment gigs
+            \item CBE Algebra II — [96, 96]
+            \item CBE Tamil via Avant for 4 Language Credits
+            \subitem 100 in Reading, 100 in Listening, 99 in Speaking, 85 in Writing
+            \item Continued baking eggless cakes as a hobby
+            \item Started binge watching many Tamil movies (old to new)
+            \item Continued producing music arrangements, learning live mixing in Garage Arts Project Dallas Exhibition
+
+        \end{highlights}
+
+    
+    \section{Character Traits and Personality}
+
+    \begin{onecolentry}
+        \begin{highlightsforbulletentries}
+
+
+        \item \textbf{Honest} and high \textbf{integrity}: helped catch cheaters in school multiple times.
+        \item \textbf{Inquisitive and Curious}: always asking questions and trying to learn more
+        \item \textbf{Hardworking and Determined}: Pushing myself to perfection in everything I do
+        \item \textbf{Creative Problem Solver}: Able to think outside the box and come up with innovative solutions
+        \item \textbf{Character Weaknesses:}
+            \subitem Can tend to overthink problems and overcomplicated solutions
+            \subitem Sometimes take on too much at once and struggle to prioritize tasks
+            \subitem Sometimes struggle with delegation and asking for help when needed
+            \subitem Can be overly critical of myself and others at times
+        \end{highlightsforbulletentries}
+    \end{onecolentry}
+
+    \section{Education}
+
+
+        \begin{twocolentry}{
+            
+            
+        \textit{August 2023 – May 2027}}
+            \textbf{Plano East Senior High School, Plano}
+
+            \textit{STEM and Multidisciplinary Endorsement}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item GPA: 4.73/4.0 (\href{https://resume.keshavanand.net/transcript}{View Unnoficial Transcript})
+                \item Class Rank: \textbf{1/1273}
+                \item \textbf{Current Coursework:} AP Chemistry, American Studies (AP US History + AP English Language), Digital Electronics, AP Physics I, Calculus III (via Collin College)
+                \item SAT: 1550/1600 — Reading 760/800, Maths 790/800
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+
+
+    
+    \section{GaitGuardian: Highlight Research Project}
+
+
+
+\begin{twocolentry}{
+\textit{\href{https://isef.net/project/robo011t-ml-imu-processing-and-visual-monitoring-for-pd}{Project Portfolio}}}
+    \textbf{Lead Researcher}
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Built \textbf{GaitGuardian}, an end-to-end ML system aiding advanced Parkinson’s Disease patients.
+        \item Designed a \textbf{custom PCB} and embedded stack with a 6-DoF IMU and ESP32-S3 for real-time sensing.
+        \item Developed a \textbf{dual-attention CNN + biLSTM} model predicting Freezing-of-Gait up to 2s early.
+        \item Created real-time algorithms for \textbf{fall detection} and \textbf{tremor classification} using IMU signals.
+        \item Implemented a cloud-based \textbf{visual navigation module} with transformer object detection, depth estimation, and multimodal LLM scene descriptions.
+        \item Optimized sensor pipelines via \textbf{signal filtering, feature engineering, oversampling}, and model tuning.
+        \item Built two wearable devices (trunk and wrist) plus a BLE-connected \textbf{forehead camera} for vision tasks.
+        \item Demonstrated performance exceeding existing FoG, fall, and tremor detection systems.
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.1cm}
+
+\begin{onecolentry}
+    Won 3rd Place at \textbf{The International Science and Engineering Fair}, 2nd OVERALL in Dallas $\to$ over \$1500 won
+\end{onecolentry}
+
+                        
+\section{Simply Stir: Highlight Research Project}
+
+
+\begin{twocolentry}{
+\textit{\href{https://isef.net/project/etsd012-self-stirring-pot-using-the-seebeck-effect}{Project Portfolio}}}
+    \textbf{Sole Researcher}
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Developed a thermoelectric energy-harvesting system using a TEG for autonomous stirring.
+        \item Designed a compact aluminum enclosure enabling efficient heat transfer and stable thermal gradients.
+        \item Implemented electrical conditioning and load-matching to maximize TEG power extraction.
+        \item Tested power delivery across various $R_Loads$ using Vernier Probes
+        \item Performed thermal, electrical, and mechanical characterization across multiple cooking conditions.
+        \item Conducted viscosity-based stirring tests and identified mechanical design improvements for high-torque fluids.
+    \end{highlights}
+\end{onecolentry}
+\vspace{0.1cm}
+
+\begin{onecolentry}
+    Qualified to \textbf{The International Science and Engineering Fair}, 1st in Engineering @ Dallas
+\end{onecolentry}
+    
+                        
+\section{FTC Robotics}
+
+\begin{twocolentry}{
+\textit{\href{https://technicalturbulence.org}{Website}, \href{https://github.com/KeshavAnandCode/2024_Main.git}{Code Repo}}}
+    \textbf{Lead Software Developer – Technical Turbulence} (2023–Present)
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Designed and implemented \textbf{custom inverse kinematics and path-planning algorithms} for precise autonomous navigation.
+        \item Integrated \textbf{computer vision pipelines} for object classification using TensorFlow Lite
+        \item Developed novel driver control enhancements to improve driver performance
+        \item Optimized accuracy and real-time performance through efficient sensor usage
+        \item Lead software \textbf{Top 30 Worldwide} for autonomous programming; reached FTC State Finals.
+        \item Led software development, version control, and testing for a programming team of 4 members.
+    \end{highlights}
+\end{onecolentry}
+    
+    \section{Skills}
+
+
+
+        
+        \begin{onecolentry}
+            \textbf{Programming Languages:} Java, Python, Bash, C++ (Arduino), Kotlin (FTC), Limited HTML, JS, CSS
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{Programming Applications:} Machine Learning, Signal Processing, Tensor Flow, Computer Vision
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{Miscellaneous:} Public Speaking, CAD, PCB Design, Electrical, Competition Math
+        \end{onecolentry}
+
+        
+
+    \section{Other Activities}
+
+
+    \begin{onecolentry}
+            \textbf{Vice President, LASER:} Guiding and instructing 120+ students for Science Fair
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{Founder, Cricket Club:} Former USA U15 Cricketer $\to$ Formed Plano East's first cricket team
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{onecolentry}
+            \textbf{Technology Officer, NHS:} Coded and maintained React-based portal for largest NHS chapter in the US
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+
+
+
+        \begin{twocolentry}{
+            
+            
+        \textit{\href{https://musicportfolio.keshavanand.net/}{Original Music Library}}}
+        \textbf{Indian Film Music:} Bass, Keys, and Arrangement, member of High Octavez 
+            
+        \end{twocolentry}
+
+        \vspace{0.2 cm}
+
+
+ 
+    
+
+\end{document}

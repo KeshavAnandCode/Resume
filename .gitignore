@@ -17,12 +17,13 @@
 *.vrb
 *.bcf
 *.run.xml
-
+*.bak0
 
 
 # Backup files
 *~
-*.bak
+*.bak*
+
 *.backup
 *.swp
 

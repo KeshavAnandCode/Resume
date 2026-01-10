@@ -35,6 +35,7 @@
 \usepackage{needspace} % for avoiding page brake right after the section title
 \usepackage{iftex} % check if engine is pdflatex, xetex or luatex
 \usepackage{xstring}
+\usepackage{pdfpages} % for including PDF pages
 
 
 % Ensure that generate pdf is machine readable/ATS parsable:
@@ -351,6 +352,9 @@ effort involved in a major school project (include grade awarded, teamwork invol
 
 
 \end{onecolentry}
+
+
+\includepdf[pages=-]{stem-essay/main.pdf}
 
 
 \end{document}

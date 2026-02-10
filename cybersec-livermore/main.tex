@@ -1,0 +1,409 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=1.3 cm, % seperation between body and page edge from the top
+    bottom=0.8 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=0 cm, % seperation between body and footer
+    % showframe % for debugging
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Keshav Anand's Resume},
+    pdfauthor={Keshav Anand},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+
+}{}{} % replace number by desired string
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.4 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+\newcommand{\AND}{\unskip
+	\cleaders\copy\ANDbox\hskip\wd\ANDbox
+	\ignorespaces
+}
+\newsavebox\ANDbox
+\sbox\ANDbox{}
+
+\begin{header}
+	\textbf{\fontsize{24 pt}{24 pt}\selectfont Keshav Anand}
+
+	\vspace{0.3 cm}
+
+	\normalsize
+
+	\mbox{\hrefWithoutArrow{mailto:keshavanand.dev@gmail.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}keshavanand.dev@gmail.com}}%
+	\kern 0.25 cm%
+	\AND%
+	\kern 0.25 cm%
+	\mbox{\hrefWithoutArrow{tel:+1-972-520-4390}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}(972) 520-4390}}%
+	\kern 0.25 cm%
+	%TODO: Fix website link
+	%\AND%
+	%\kern 0.25 cm%
+	%\mbox{\hrefWithoutArrow{https://yourwebsite.com/}{\color{black}{\footnotesize\faLink}\hspace*{0.13cm}yourwebsite.com}}%
+	%\kern 0.25 cm%
+	\AND%
+	\kern 0.25 cm%
+	\mbox{\hrefWithoutArrow{https://linkedin.com/in/keshavganand}{\color{black}{\footnotesize\faLinkedinIn}\hspace*{0.13cm}keshavganand}}%
+	\kern 0.25 cm%
+	\AND%
+	\kern 0.25 cm%
+	\mbox{\hrefWithoutArrow{https://git.keshavanand.net/keshavanandcode}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}keshavanandcode}}%
+\end{header}
+
+\vspace{0.3 cm - 0.3 cm}
+
+
+
+\section{Education}
+
+
+
+
+\begin{twocolentry}{
+
+
+		\textit{August 2023 – May 2027}}
+	\textbf{Plano East Senior High School, Plano}
+
+\end{twocolentry}
+
+\vspace{0.2 cm}
+\begin{onecolentry}
+	\begin{highlights}
+		\item GPA: 4.78571/4.0, Unweighted: 4.0/4.0, Class Rank: \textbf{2/1255} (\href{https://resume.keshavanand.net/transcript}{View Unnoficial Transcript})
+		\item \textbf{Current Coursework:} AP Chemistry, American Studies (AP US History + AP English Language), Digital Electronics, AP Physics I, Differential Equations (via Collin College)
+		\item SAT: 1550/1600 — Reading 760/800, Maths 790/800
+		\item ACT: 36/36 — Maths 36, Reading 36, Science 36, English 35
+	\end{highlights}
+\end{onecolentry}
+
+
+\section{Key Projects and Work}
+
+
+
+
+\begin{twocolentry}{
+
+
+		\textit{\href{https://isef.net/project/robo011t-ml-imu-processing-and-visual-monitoring-for-pd}{Project Portfolio}}}
+	\textbf{GaitGuardian: IMU Processing for Parkinson's Disease} (2024-Present)
+\end{twocolentry}
+\vspace{0.10 cm}
+\begin{onecolentry}
+	\begin{highlights}
+		\item Constructed novel hybrid biLSTM + CNN architecture for Freezing of Gait prediction
+		\item Signal processing and segmentation to reduce subject-dependence
+		\item State-of-the-art metric performance while being end-to-end functional
+	\end{highlights}
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{twocolentry}{
+
+
+		\textit{\href{https://git.keshavanand.net/KeshavAnandCode/FTCDecodeMain}{2025-26 Git Repo}}}
+	\textbf{FTC Technical Turbulence Lead Software Developer} (2023-Present)
+\end{twocolentry}
+\vspace{0.10 cm}
+\begin{onecolentry}
+	\begin{highlights}
+		\item Custom inverse kinematics pathing and Computer Vision for Autonomous Navigation
+		\item World \textbf{top-30} FTC team for autonomous software, TX State Finalist
+	\end{highlights}
+\end{onecolentry}
+
+
+\vspace{0.2 cm}
+
+\begin{twocolentry}{
+
+
+		\textit{\href{https://start.keshavanand.net/}{Server Start Page}}}
+	\textbf{Full Time Linux Self-Hosted Server} (Nov. 2025-Present)
+\end{twocolentry}
+\vspace{0.10 cm}
+\begin{onecolentry}
+	\begin{highlights}
+		\item Repurposed old \$35 chromebook into a full time Ubuntu server to host services
+		\item Hosting Nginx Websites, Git Server, SSH Server, Cinny Messaging, Immich Photo Backup, and more
+	\end{highlights}
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{twocolentry}{
+
+
+		\textit{\href{https://terminalportfolio.keshavanand.net/}{Portfolio + Code}}}
+	\textbf{Terminal GUI Portfolio Shell} (Sep. 2025-Jan. 2026)
+\end{twocolentry}
+\vspace{0.10 cm}
+\begin{onecolentry}
+	\begin{highlights}
+		\item FTXUI-based C++ Terminal Shell with \textbf{no auth}, fully hardened
+	\end{highlights}
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+
+\begin{twocolentry}{
+
+
+		\textit{\href{https://isef.net/project/etsd012-self-stirring-pot-using-the-seebeck-effect}{Project Portfolio}}}
+	\textbf{TEG Powered Self-Stirring Device} (2023-2024)
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+	\begin{highlights}
+		\item Built novel prototype to harvest thermal energy for automatic stirring while cooking
+	\end{highlights}
+\end{onecolentry}
+
+
+\vspace{0.2 cm}
+
+
+\section{Awards and Honors}
+
+
+
+\begin{twocolentry}{
+
+
+		\textit{2024}}
+	\textbf{Thermoelectric Generator Research Project}
+
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+	\begin{highlights}
+		\item Dallas Fair: 1st in Engineering, US Air Force Recognition, USMA Best SI Units
+		\item \textbf{International Science and Engineering Fair (ISEF) Finalist}
+	\end{highlights}
+\end{onecolentry}
+
+
+
+\vspace{0.20 cm}
+
+
+
+\begin{twocolentry}{
+
+
+		\textit{2025}}
+	\textbf{GaitGuardian: ML and Signal Processing for PD Research}
+
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+	\begin{highlights}
+		\item Dallas Fair: 1st in Systems Software, \textbf{Grand Prize} Runner-Up, TI Best Computing Project 2nd
+		\item ISEF Finalist, \textbf{ISEF 3rd in Robotics and Intelligent Systems} (\$1200)
+	\end{highlights}
+\end{onecolentry}
+
+
+
+\vspace{0.20 cm}
+
+
+
+\begin{twocolentry}{
+
+
+		\textit{2024-25}}
+	\textbf{FTC Technical Turbulence}, State Division Finalist, Control Award Winner
+
+\end{twocolentry}
+
+
+
+\vspace{0.20 cm}
+
+
+
+
+
+
+
+\section{Skills}
+
+
+
+
+\begin{onecolentry}
+	\textbf{Programming Languages:} Java, Python, C++, Bash, Rust (Limited), Javascript
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{onecolentry}
+	\textbf{Programming Applications:} Machine Learning, Server Backend, Linux, Networking and Security
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{onecolentry}
+	\textbf{Miscellaneous:} Public Speaking, CAD, PCB Design, Electrical, Competition Math
+\end{onecolentry}
+
+
+\section{Other Miscellaneous Activities}
+
+
+\begin{onecolentry}
+	\textbf{Vice President, LASER:} Guiding and instructing 120+ students for Science Fair
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{onecolentry}
+	\textbf{Founder, Cricket Club:} Former USA U15 Cricketer $\to$ Formed Plano East's first cricket team
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{onecolentry}
+	\textbf{Technology Officer, NHS:} Coded and maintained React-based portal for largest NHS chapter in the US
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
